@@ -1,0 +1,7 @@
+
+# Da problemas con la github page
+node_modules
+.vscode
+dist
+dummy
+.coveralls.yml
