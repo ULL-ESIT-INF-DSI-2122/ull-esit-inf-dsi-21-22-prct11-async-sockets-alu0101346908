@@ -4,7 +4,7 @@
   "main": "1.js",
   "scripts": {
     "coverage": "nyc npm test && nyc report --reporter=lcov",
-    "start": "tsc-watch --onSuccess \"node mod/mod.js\"",
+    "start": "tsc-watch --onSuccess \"node dist/mod/server.js\"",
     "docs": "typedoc",
     "test": "mocha"
   },
