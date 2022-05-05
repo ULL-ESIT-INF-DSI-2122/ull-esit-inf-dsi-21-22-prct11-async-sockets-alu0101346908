@@ -2,6 +2,9 @@ import * as net from 'net';
 import {EventEmitter} from 'events';
 
 
+/**
+ * Class that models a client that request commands to a CommandServer, it connects to the port 60300 and recieves and sends messages through sockets
+ */
 export class CommandClient {
   constructor(private command:string, private argumentList:string) {
     const socketCopy = net.connect({port: 60300});
@@ -22,6 +25,10 @@ export class CommandClient {
   }
 }
 
+/**
+ * Class that models a protocol for the communication between CommandClient and CommandServers
+ * using a delimiter \n to safely say that the message has concluded
+ */
 export class MessageEventEmitterClient extends EventEmitter {
   constructor(connection: EventEmitter) {
     super();

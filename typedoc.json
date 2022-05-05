@@ -1,5 +1,7 @@
 {
   "entryPoints": [
+    "./src/mod/server.ts",
+    "./src/mod/client.ts"
   ],
   "out": "./docs"
 }

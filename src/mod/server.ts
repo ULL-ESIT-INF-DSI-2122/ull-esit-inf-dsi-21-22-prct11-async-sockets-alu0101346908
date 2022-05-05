@@ -2,7 +2,9 @@ import * as net from 'net';
 import {spawn} from 'child_process';
 import {EventEmitter} from 'events';
 
-
+/**
+ * Class that models a server that process commands, its port is the 60300 and recieves and sends messages through sockets
+ */
 export class CommandServer {
   constructor() {
     net.createServer((connection) => {
@@ -33,6 +35,10 @@ export class CommandServer {
   }
 }
 
+/**
+ * Class that models a protocol for the communication between CommandClient and CommandServers
+ * using a delimiter \n to safely say that the message has concluded
+ */
 export class CommandEventEmitterServer extends EventEmitter {
   constructor(connection: EventEmitter) {
     super();
