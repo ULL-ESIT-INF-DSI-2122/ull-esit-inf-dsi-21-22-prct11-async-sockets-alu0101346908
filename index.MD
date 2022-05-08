@@ -4,7 +4,6 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ULL-ESIT-INF-DSI-2122_ull-esit-inf-dsi-21-22-prct11-async-sockets-alu0101346908&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ULL-ESIT-INF-DSI-2122_ull-esit-inf-dsi-21-22-prct11-async-sockets-alu0101346908)
 [![Test](https://github.com/ULL-ESIT-INF-DSI-2122/ull-esit-inf-dsi-21-22-prct11-async-sockets-alu0101346908/actions/workflows/test.js.yml/badge.svg)](https://github.com/ULL-ESIT-INF-DSI-2122/ull-esit-inf-dsi-21-22-prct11-async-sockets-alu0101346908/actions/workflows/test.js.yml)
 
-A dia 08/05/2021 a las 22:15 existen problemas con GitHub Actions, donde me sale un aviso que no se pueden ejecutar las pruebas por que he excedido el tiempo disponible de la quota de el plan Github Pro, entiendo que esto es un problema del lado de ellos.
 
 ## Objetivos
   - Ejercicios

@@ -237,3 +237,4 @@ export class CommandEventEmitterServer extends EventEmitter {
   }
 }
 
+let server:NotesServer = new NotesServer(60300);
