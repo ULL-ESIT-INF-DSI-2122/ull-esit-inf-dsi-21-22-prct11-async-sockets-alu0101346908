@@ -38,39 +38,62 @@ export class NotesClient {
         console.log(chalk.green('Successful response'));
         switch (response.type) {
           case 'add':
-            console.log('Add request response: \n' + chalk.green(response.message));
-            socketCopy.write(JSON.stringify({'type': 'end'}) +
-            '\n');
+            if (response.type === request.type) {
+              console.log('Add request response: \n' + chalk.green(response.message));
+              socketCopy.write(JSON.stringify({'type': 'end'}) +
+              '\n');
+            } else {
+              console.log('Server response type is unexpected, check server side');
+            }
             break;
           case 'modify':
-            console.log('Modify request response: \n' + chalk.green(response.message));
-            socketCopy.write(JSON.stringify({'type': 'end'}) +
-            '\n');
+            if (response.type === request.type) {
+              console.log('Modify request response: \n' + chalk.green(response.message));
+              socketCopy.write(JSON.stringify({'type': 'end'}) +
+              '\n');
+            } else {
+              console.log('Server response type is unexpected, check server side');
+            }
             break;
           case 'delete':
-            console.log('Delete request response: \n' + chalk.green(response.message));
-            socketCopy.write(JSON.stringify({'type': 'end'}) +
-            '\n');
-            break;
+            if (response.type === request.type) {
+              console.log('Delete request response: \n' + chalk.green(response.message));
+              socketCopy.write(JSON.stringify({'type': 'end'}) +
+              '\n');
+              break;
+            } else {
+              console.log('Server response type is unexpected, check server side');
+            }
           case 'read':
-            console.log('Read request response: \n' + chalk.green(response.message));
-            console.log(`Printing note : \n`);
-            let readNote:NoteClass = new NoteClass(response.notes[0].title, response.notes[0].body, response.notes[0].color);
-            console.log(readNote.print());
-            socketCopy.write(JSON.stringify({'type': 'end'}) +
-            '\n');
+            if (response.type === request.type) {
+              console.log('Read request response: \n' + chalk.green(response.message));
+              console.log(`Printing note : \n`);
+              let readNote:NoteClass = new NoteClass(response.notes[0].title, response.notes[0].body, response.notes[0].color);
+              console.log(readNote.print());
+              socketCopy.write(JSON.stringify({'type': 'end'}) +
+              '\n');
+            } else {
+              console.log('Server response type is unexpected, check server side');
+            }
             break;
           case 'list':
-            console.log('List request response: \n' + chalk.green(response.message));
-            console.log(`Printing notes : \n`);
-            let notesString:string = '';
-            response.notes.forEach((note:any, index:number) => {
-              const readNote:NoteClass = new NoteClass(note.title, note.body, note.color);
-              notesString += (`Note ${index}:\n` + readNote.print()+'\n');
-            });
-            console.log(notesString);
-            socketCopy.write(JSON.stringify({'type': 'end'}) +
-            '\n');
+            if (response.type === request.type) {
+              console.log('List request response: \n' + chalk.green(response.message));
+              console.log(`Printing notes : \n`);
+              let notesString:string = '';
+              response.notes.forEach((note:any, index:number) => {
+                const readNote:NoteClass = new NoteClass(note.title, note.body, note.color);
+                notesString += (`Note ${index}:\n` + readNote.print()+'\n');
+              });
+              console.log(notesString);
+              socketCopy.write(JSON.stringify({'type': 'end'}) +
+              '\n');
+            } else {
+              console.log('Server response type is unexpected, check server side');
+            }
+            break;
+          default:
+            console.log('Server response type is unexpected, check server side');
             break;
         }
         console.log('\nRequesting server to terminate connection...\n');
