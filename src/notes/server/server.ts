@@ -3,7 +3,9 @@ import {spawn} from 'child_process';
 import {EventEmitter} from 'events';
 import {NoteClass, notesColors} from './notesApp/classes/noteClass';
 
-
+/**
+ * Type that models a response generated on the server to be sent to the client
+ */
 export type ResponseType = {
   type: 'add' | 'modify' | 'delete' | 'read' | 'list';
   success: boolean;
@@ -11,7 +13,9 @@ export type ResponseType = {
   err?: string;
   notes?: NoteClass[];
 }
-
+/**
+ * Type that models a request generated on the client to be received on the server
+ */
 export type RequestType = {
   type: 'add' | 'modify' | 'delete' | 'read' | 'list' | 'end';
   user?: string;
@@ -203,6 +207,9 @@ export class NotesServer extends EventEmitter {
       console.log('Waiting for clients to connect.');
     });
   }
+  /**
+   * Function to close the server on demmand
+   */
   close() {
     this.serverSocket.close();
   }

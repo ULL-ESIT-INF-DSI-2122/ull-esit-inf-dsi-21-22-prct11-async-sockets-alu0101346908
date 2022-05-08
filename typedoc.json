@@ -1,7 +1,12 @@
 {
   "entryPoints": [
     "./src/mod/server.ts",
-    "./src/mod/client.ts"
+    "./src/notes/client/client.ts",
+    "./src/notes/client/clientYargs.ts",
+    "./src/notes/server/server.ts",
+    "./src/notes/server/notesApp/yargsCommands.ts",
+    "./src/notes/server/notesApp/classes/noteClass.ts",
+    "./src/notes/server/notesApp/classes/noteManagementClass.ts"
   ],
   "out": "./docs"
 }

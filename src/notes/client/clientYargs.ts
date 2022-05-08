@@ -1,7 +1,10 @@
 import * as yargs from 'yargs';
 import {NotesClient, RequestType} from './client';
 import {notesColors} from '../server/notesApp/classes/noteClass';
-
+/**
+ * Yarg command to add a note to a user even if the user doesnt exist, this petition is sent to a server listening on port 60300
+ * Example: yargsCommands.js add --user="user" --title="Yellow note" --body="This is a yellow note" --color="yellow"
+ */
 yargs.command({
   command: 'add',
   describe: 'Add a new note',
@@ -37,7 +40,7 @@ yargs.command({
   },
 });
 /**
- * Yarg command to modify an existing note of an existing given user
+ * Yarg command to modify an existing note of an existing given user, this petition is sent to a server listening on port 60300
  * Example: yargsCommands.js modify --user="user" --title="Yellow note" --body="This is a yellow note" --color="yellow"
  */
 yargs.command({
@@ -74,7 +77,7 @@ yargs.command({
   },
 });
 /**
- * Yarg command to delete an existing note from an existing given user
+ * Yarg command to delete an existing note from an existing given user, this petition is sent to a server listening on port 60300
  * Example: yargsCommands.js delete --user="user" --title="Yellow note"
  */
 yargs.command({
@@ -100,7 +103,7 @@ yargs.command({
   },
 });
 /**
- * Yarg command to list all existing notes from an existing given user
+ * Yarg command to list all existing notes from an existing given user, this petition is sent to a server listening on port 60300
  * Example: yargsCommands.js list --user="user"
  */
 yargs.command({
@@ -121,7 +124,7 @@ yargs.command({
   },
 });
 /**
- * Yarg command to print an existing notes given its title from an existing given user
+ * Yarg command to print an existing notes given its title from an existing given user, this petition is sent to a server listening on port 60300
  * Example: yargsCommands.js read --user="user" --title="Yellow note"
  */
 yargs.command({

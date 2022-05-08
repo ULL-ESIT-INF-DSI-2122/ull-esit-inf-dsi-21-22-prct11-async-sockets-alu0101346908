@@ -5,3 +5,4 @@ node_modules
 dist
 dummy
 .coveralls.yml
+notesFolder

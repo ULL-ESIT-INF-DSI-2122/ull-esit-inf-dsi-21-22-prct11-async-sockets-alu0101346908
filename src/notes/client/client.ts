@@ -3,7 +3,9 @@ import {EventEmitter} from 'events';
 import chalk = require('chalk');
 import {NoteClass, notesColors} from '../server/notesApp/classes/noteClass';
 
-
+/**
+ * Type that models a request generated on the client to be sent to the server
+ */
 export type RequestType = {
   type: 'add' | 'modify' | 'delete' | 'read' | 'list' | 'end';
   user?: string;
@@ -11,6 +13,9 @@ export type RequestType = {
   body?: string;
   color?: notesColors;
 }
+/**
+ * Type that models a response generated on the server to be received on the client
+ */
 export type ResponseType = {
   type: 'add' | 'modify' | 'delete' | 'read' | 'list';
   success: boolean;
@@ -18,7 +23,9 @@ export type ResponseType = {
   err?: string;
   notes?: NoteClass[];
 }
-
+/**
+ * Class that models a client that makes petitions to a notesApp server, its port is the 60300 and recieves and sends messages through sockets
+ */
 export class NotesClient {
   constructor(private request:RequestType, port:number) {
     const socketCopy = net.connect({port: port});
@@ -84,7 +91,7 @@ export class NotesClient {
 }
 
 /**
- * Class that models a protocol for the communication between NotesClient and CommandServers
+ * Class that models a protocol for the communication between NotesClient and NotesServer
  * using a delimiter \n to safely say that the message has concluded
  */
 export class MessageEventEmitterClient extends EventEmitter {
