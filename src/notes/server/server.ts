@@ -24,9 +24,10 @@ export type RequestType = {
  * Class that models a server that process notesApp commands, its port is the 60300 and recieves and sends messages through sockets
  */
 export class NotesServer extends EventEmitter {
+  private serverSocket:net.Server = new net.Server();
   constructor(port:number) {
     super();
-    net.createServer((connection) => {
+    this.serverSocket = net.createServer((connection) => {
       const socket = new CommandEventEmitterServer(connection);
       console.log('A client has connected.');
       connection.write(JSON.stringify({'type': 'status', 'data': 'Waiting for requests'}) +'\n');
@@ -67,6 +68,7 @@ export class NotesServer extends EventEmitter {
             break;
           case 'modify':
             console.log('Modify request came in...\n');
+            this.emit('modify', JSON.stringify(request));
             // eslint-disable-next-line max-len
             commandOutput = '';
             errOutput = '';
@@ -95,6 +97,7 @@ export class NotesServer extends EventEmitter {
             break;
           case 'delete':
             console.log('Delete request came in...\n');
+            this.emit('delete', JSON.stringify(request));
             // eslint-disable-next-line max-len
             commandOutput = '';
             errOutput = '';
@@ -123,6 +126,7 @@ export class NotesServer extends EventEmitter {
             break;
           case 'read':
             console.log('Read request came in...\n');
+            this.emit('read', JSON.stringify(request));
             // eslint-disable-next-line max-len
             commandOutput = '';
             errOutput = '';
@@ -152,6 +156,7 @@ export class NotesServer extends EventEmitter {
             break;
           case 'list':
             console.log('List request came in...\n');
+            this.emit('list', JSON.stringify(request));
             // eslint-disable-next-line max-len
             commandOutput = '';
             errOutput = '';
@@ -184,6 +189,7 @@ export class NotesServer extends EventEmitter {
             });
             break;
           case 'end':
+            this.emit('end', JSON.stringify(request));
             console.log('Terminate connection request came in...\n');
             console.log('Client received response, ending connection...\n');
             connection.end();
@@ -196,6 +202,9 @@ export class NotesServer extends EventEmitter {
     }).listen(port, () => {
       console.log('Waiting for clients to connect.');
     });
+  }
+  close() {
+    this.serverSocket.close();
   }
 }
 
