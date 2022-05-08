@@ -45,9 +45,9 @@ export class MessageEventEmitterClient extends EventEmitter {
     });
   }
 }
-let command: string = process.argv[2];
-let argumentsList:string = process.argv[3];
+// let command: string = process.argv[2];
+// let argumentsList:string = process.argv[3];
 
-console.log(process.argv);
-console.log(command+ '  ' + argumentsList);
-let client:CommandClient = new CommandClient(command, argumentsList);
+// console.log(process.argv);
+// console.log(command+ '  ' + argumentsList);
+// let client:CommandClient = new CommandClient(command, argumentsList);
