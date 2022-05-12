@@ -4,7 +4,7 @@
   "main": "1.js",
   "scripts": {
     "coverage": "nyc npm test && nyc report --reporter=lcov",
-    "start": "tsc-watch --onSuccess \"node dist/notes/server/server.js\"",
+    "start": "tsc-watch --onSuccess \"node dist/modP12/server.js\"",
     "docs": "typedoc",
     "test": "mocha"
   },
@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/ULL-ESIT-INF-DSI-2122/ull-esit-inf-dsi-21-22-prct11-async-sockets-alu0101346908#readme",
   "devDependencies": {
+    "@types/bson": "^4.2.0",
     "@types/chai": "^4.3.0",
     "@types/express": "^4.17.13",
     "@types/mocha": "^9.1.0",
