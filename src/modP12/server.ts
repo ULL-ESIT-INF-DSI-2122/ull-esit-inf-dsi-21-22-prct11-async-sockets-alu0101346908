@@ -16,7 +16,8 @@ app.get('/execmd', (req, res) => {
       let errmsg: string = '';
       requestedProcess.on('error', function(err) {
         errmsg = err.message;
-        reject(errmsg);
+        const response = {'cmd': command.cmd, 'args': argss.args, 'success': false, 'output': 'Bad command', 'err': errmsg};
+        reject(response);
       });
       let commandOutput: string = '';
       let errOutput = '';
@@ -35,17 +36,16 @@ app.get('/execmd', (req, res) => {
           const response = {'cmd': command.cmd, 'args': argss.args, 'success': terminatedProperly, 'output': commandOutput};
           console.log(`Response: \n`+ JSON.stringify(response, null, 4));
           resolve(response);
-        } else {
+        } else if (commandOutput == '') {
           const response = {'cmd': command.cmd, 'args': argss.args,'success': terminatedProperly, 'output': errOutput};
           console.log(`Response: \n` + JSON.stringify(response, null, 4));
-          resolve(response);
+          reject(response);
         }
       });
     });
     myPromise.then((response) => {
       res.status(200).send(JSON.stringify(response));
-    }).catch((error) => {
-      const response = {'cmd': command.cmd, 'args': argss.args, 'success': false, 'output': 'Bad command', 'err': error};
+    }).catch((response) => {
       console.log(`Response: \n`+ JSON.stringify(response, null, 4));
       res.status(200).send(JSON.stringify(response));
     });
